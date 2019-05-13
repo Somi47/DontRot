@@ -38,7 +38,11 @@ namespace DontRot.Client
         }
         private void Button_Click_EatOne(object sender, RoutedEventArgs e)
         {
-            FoodGrid.EatOne();
+            ListView listView = (ListView)FindName("lvFood");
+            if (listView.SelectedItem == null)
+                return;
+
+            FoodGrid.EatOne((Food)listView.SelectedItem);
         }
     }
 
@@ -63,8 +67,14 @@ namespace DontRot.Client
             }
         }
 
-        public void EatOne()
+        public async void EatOne(Food food)
         {
+            --food.Quantity;
+            using (var httpClient = new HttpClient())
+            {
+                FoodClient foodClient = new FoodClient(httpClient);
+                await foodClient.PutAsync(food.Id, food);
+            }
             RefreshAsync();
         }
     }
