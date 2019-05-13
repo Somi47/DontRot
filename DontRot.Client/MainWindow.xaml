@@ -1,0 +1,31 @@
+﻿<Window x:Class="DontRot.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DontRot.Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid>
+		<StackPanel Orientation="Vertical">
+			<StackPanel Margin="10" Orientation="Horizontal">
+				<Button Margin="10" Height="20" Width="50" Content="Refresh" Click="Button_Click_Refresh"/>
+				<Button Margin="10" Height="20" Width="50" Content="Eat one" Click="Button_Click_EatOne"/>
+			</StackPanel>
+			<Grid>
+				<ListView Margin="10" Name="lvUsers" ItemsSource="{Binding FoodList}">
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Header="Category Name" Width="100" DisplayMemberBinding="{Binding Category.Name}" />
+							<GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+							<GridViewColumn Header="Expiry" Width="70" DisplayMemberBinding="{Binding ExpiryDateTime}" />
+							<GridViewColumn Header="Quantity" Width="50" DisplayMemberBinding="{Binding Quantity}" />
+							<GridViewColumn Header="Storage" Width="100" DisplayMemberBinding="{Binding Slot.Storage.Name}" />
+							<GridViewColumn Header="Slot" Width="100" DisplayMemberBinding="{Binding Slot.Name}" />
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</Window>
