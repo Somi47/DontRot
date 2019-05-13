@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DontRot.Entities;
 
 namespace DontRot.DAL.Entities
 {

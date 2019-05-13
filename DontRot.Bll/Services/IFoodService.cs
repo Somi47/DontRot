@@ -1,6 +1,5 @@
 using DontRot.DAL.Entities;
 using System.Collections.Generic;
-using DontRot.Entities;
 
 namespace DontRot.Bll.Services
 {

@@ -4,7 +4,6 @@ using DontRot.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using DontRot.Bll.Exceptions;
 using DontRot.DAL;
-using DontRot.Entities;
 
 namespace DontRot.Bll.Services
 {

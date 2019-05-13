@@ -39,12 +39,10 @@ namespace DontRot.Api
 
             services.AddAutoMapper(cfg =>
             {
-                cfg.CreateMap<DAL.Entities.Food, Bll.Dtos.Food>()
-                    .AfterMap((f, dto, ctx) => {
-                        dto.CategoryName = f.Category.Name;
-                        dto.SlotName = f.Slot.Name;
-                        dto.StorageName = f.Slot.Storage.Name;
-                    }).ReverseMap();
+                cfg.CreateMap<DAL.Entities.Category, Bll.Dtos.Category>().ReverseMap();
+                cfg.CreateMap<DAL.Entities.Food, Bll.Dtos.Food>().ReverseMap();
+                cfg.CreateMap<DAL.Entities.Slot, Bll.Dtos.Slot>().ReverseMap();
+                cfg.CreateMap<DAL.Entities.Storage, Bll.Dtos.Storage>().ReverseMap();
             });
 
             services.AddSwaggerDocument();

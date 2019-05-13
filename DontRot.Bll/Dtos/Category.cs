@@ -1,13 +1,12 @@
-﻿using DontRot.DAL.Entities;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace DontRot.DAL.Entities
+namespace DontRot.Bll.Dtos
 {
     public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public ICollection<Food> Foods { get; } = new List<Food>();
     }
 }
