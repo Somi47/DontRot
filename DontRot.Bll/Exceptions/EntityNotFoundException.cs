@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebApiLabor.Bll.Exceptions
+namespace DontRot.Bll.Exceptions
 {
     public class EntityNotFoundException : Exception
     {

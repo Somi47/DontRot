@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,10 +7,11 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using WebApiLabor.Bll.Services;
-using WebApiLabor.DAL;
+using DontRot.Bll.Services;
+using DontRot.DAL;
+using DontRot.Bll;
 
-namespace WebApiLabor.Api
+namespace DontRot.Api
 {
     public class Startup
     {
@@ -29,21 +31,32 @@ namespace WebApiLabor.Api
                     json => json.SerializerSettings.ReferenceLoopHandling 
                             = ReferenceLoopHandling.Ignore);
 
-            services.AddDbContext<NorthwindContext>(o =>
+            services.AddDbContext<DontRotContext>(o =>
                 o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
                 .ConfigureWarnings(c => c.Throw(RelationalEventId.QueryClientEvaluationWarning)));
 
-            services.AddTransient<IProductService, ProductService>();           
+            services.AddTransient<IFoodService, FoodService>();
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.CreateMap<DAL.Entities.Food, Bll.Dtos.Food>()
+                    .AfterMap((f, dto, ctx) => {
+                        dto.CategoryName = f.Category.Name;
+                        dto.SlotName = f.Slot.Name;
+                        dto.StorageName = f.Slot.Storage.Name;
+                    }).ReverseMap();
+            });
+
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
+            //app.UseProblemDetails();
             app.UseMvc();
         }
     }

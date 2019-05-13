@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApiLabor.Api
+namespace DontRot.Api
 {
     public class Program
     {

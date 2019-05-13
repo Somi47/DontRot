@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApiLabor.Api.Controllers
+namespace DontRot.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
