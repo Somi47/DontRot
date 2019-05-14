@@ -36,6 +36,8 @@ namespace DontRot.Api
                 .ConfigureWarnings(c => c.Throw(RelationalEventId.QueryClientEvaluationWarning)));
 
             services.AddTransient<IFoodService, FoodService>();
+            services.AddTransient<ISlotService, SlotService>();
+            services.AddTransient<IStorageService, StorageService>();
 
             services.AddAutoMapper(cfg =>
             {
