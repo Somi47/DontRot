@@ -35,7 +35,8 @@ namespace DontRot.Api
                 o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
                 .ConfigureWarnings(c => c.Throw(RelationalEventId.QueryClientEvaluationWarning)));
 
-            services.AddTransient<IFoodService, FoodService>();
+			services.AddTransient<ICategoryService, CategoryService>();
+			services.AddTransient<IFoodService, FoodService>();
             services.AddTransient<ISlotService, SlotService>();
             services.AddTransient<IStorageService, StorageService>();
 

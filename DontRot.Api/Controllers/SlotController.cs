@@ -10,30 +10,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DontRot.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SlotController : ControllerBase
-    {
-        public ISlotService SlotService { get; }
-        public IMapper Mapper { get; }
+	[Route( "api/[controller]" )]
+	[ApiController]
+	public class SlotController : ControllerBase
+	{
+		public ISlotService SlotService { get; }
+		public IMapper Mapper { get; }
 
-        public SlotController(ISlotService slotService, IMapper mapper)
-        {
-            SlotService = slotService;
-            Mapper = mapper;
-        }
+		public SlotController( ISlotService slotService, IMapper mapper )
+		{
+			SlotService = slotService;
+			Mapper = mapper;
+		}
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Slot>> Get()
-        {
-            return Mapper.Map<List<Slot>>(SlotService.GetSlots());
-        }
+		[HttpGet]
+		public ActionResult<IEnumerable<Slot>> GetAllSlot()
+		{
+			return Mapper.Map<List<Slot>>( SlotService.GetSlots() );
+		}
 
-        // GET: api/Slot/5
-        [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Slot> Get(int id)
-        {
-            return Mapper.Map<Slot>(SlotService.GetSlot(id));
-        }
-    }
+		// GET: api/Slot/5
+		[HttpGet( "{id}" )]
+		public ActionResult<Slot> GetSlot( int id )
+		{
+			return Mapper.Map<Slot>( SlotService.GetSlot( id ) );
+		}
+	}
 }

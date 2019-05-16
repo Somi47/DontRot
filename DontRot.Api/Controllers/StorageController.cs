@@ -10,30 +10,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DontRot.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class StorageController : ControllerBase
-    {
-        public IStorageService StorageService { get; }
-        public IMapper Mapper { get; }
+	[Route( "api/[controller]" )]
+	[ApiController]
+	public class StorageController : ControllerBase
+	{
+		public IStorageService StorageService { get; }
+		public IMapper Mapper { get; }
 
-        public StorageController(IStorageService storageService, IMapper mapper)
-        {
-            StorageService = storageService;
-            Mapper = mapper;
-        }
+		public StorageController( IStorageService storageService, IMapper mapper )
+		{
+			StorageService = storageService;
+			Mapper = mapper;
+		}
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Storage>> Get()
-        {
-            return Mapper.Map<List<Storage>>(StorageService.GetStorages());
-        }
+		[HttpGet]
+		public ActionResult<IEnumerable<Storage>> GetAllStorage()
+		{
+			return Mapper.Map<List<Storage>>( StorageService.GetStorages() );
+		}
 
-        // GET: api/Storage/5
-        [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Storage> Get(int id)
-        {
-            return Mapper.Map<Storage>(StorageService.GetStorage(id));
-        }
-    }
+		// GET: api/Storage/5
+		[HttpGet( "{id}" )]
+		public ActionResult<Storage> GetStorage( int id )
+		{
+			return Mapper.Map<Storage>( StorageService.GetStorage( id ) );
+		}
+	}
 }

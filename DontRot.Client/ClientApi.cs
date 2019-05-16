@@ -8,22 +8,22 @@ namespace DontRot.ClientAPI
 {
 #pragma warning disable
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class FoodClient
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
+    public partial class CategoryClient
     {
         private string _baseUrl = "http://localhost:5000";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public FoodClient(System.Net.Http.HttpClient httpClient)
+        public CategoryClient( System.Net.Http.HttpClient httpClient )
         {
             _httpClient = httpClient;
-            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>( () =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
-                UpdateJsonSerializerSettings(settings);
+                UpdateJsonSerializerSettings( settings );
                 return settings;
-            });
+            } );
         }
 
         public string BaseUrl
@@ -34,76 +34,76 @@ namespace DontRot.ClientAPI
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
 
-        partial void UpdateJsonSerializerSettings(Newtonsoft.Json.JsonSerializerSettings settings);
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+        partial void UpdateJsonSerializerSettings( Newtonsoft.Json.JsonSerializerSettings settings );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder );
+        partial void ProcessResponse( System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response );
 
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Food>> GetAllAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Category>> GetAllCategoryAsync()
         {
-            return GetAllAsync(System.Threading.CancellationToken.None);
+            return GetAllCategoryAsync( System.Threading.CancellationToken.None );
         }
 
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Food>> GetAllAsync(System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Category>> GetAllCategoryAsync( System.Threading.CancellationToken cancellationToken )
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Food");
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Category" );
 
             var client_ = _httpClient;
             try
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
 
-                    PrepareRequest(client_, request_, urlBuilder_);
+                    PrepareRequest( client_, request_, urlBuilder_ );
                     var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
 
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
                     try
                     {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
                         {
-                            foreach (var item_ in response_.Content.Headers)
+                            foreach( var item_ in response_.Content.Headers )
                                 headers_[item_.Key] = item_.Value;
                         }
 
-                        ProcessResponse(client_, response_);
+                        ProcessResponse( client_, response_ );
 
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200")
+                        if( status_ == "200" )
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(System.Collections.Generic.ICollection<Food>);
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( System.Collections.Generic.ICollection<Category> );
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<Food>>(responseData_, _settings.Value);
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<Category>>( responseData_, _settings.Value );
                                 return result_;
                             }
-                            catch (System.Exception exception_)
+                            catch( System.Exception exception_ )
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
                             }
                         }
                         else
-                        if (status_ != "200" && status_ != "204")
+                        if( status_ != "200" && status_ != "204" )
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
                         }
 
-                        return default(System.Collections.Generic.ICollection<Food>);
+                        return default( System.Collections.Generic.ICollection<Category> );
                     }
                     finally
                     {
-                        if (response_ != null)
+                        if( response_ != null )
                             response_.Dispose();
                     }
                 }
@@ -114,73 +114,74 @@ namespace DontRot.ClientAPI
         }
 
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Food> PostAsync(Food food)
+        public System.Threading.Tasks.Task<Category> GetCategoryAsync( int id )
         {
-            return PostAsync(food, System.Threading.CancellationToken.None);
+            return GetCategoryAsync( id, System.Threading.CancellationToken.None );
         }
 
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<Food> PostAsync(Food food, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Category> GetCategoryAsync( int id, System.Threading.CancellationToken cancellationToken )
         {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Food");
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Category/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
 
             var client_ = _httpClient;
             try
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
                 {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(food, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
 
-                    PrepareRequest(client_, request_, urlBuilder_);
+                    PrepareRequest( client_, request_, urlBuilder_ );
                     var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
 
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
                     try
                     {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
                         {
-                            foreach (var item_ in response_.Content.Headers)
+                            foreach( var item_ in response_.Content.Headers )
                                 headers_[item_.Key] = item_.Value;
                         }
 
-                        ProcessResponse(client_, response_);
+                        ProcessResponse( client_, response_ );
 
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200")
+                        if( status_ == "200" )
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(Food);
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( Category );
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Food>(responseData_, _settings.Value);
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Category>( responseData_, _settings.Value );
                                 return result_;
                             }
-                            catch (System.Exception exception_)
+                            catch( System.Exception exception_ )
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
                             }
                         }
                         else
-                        if (status_ != "200" && status_ != "204")
+                        if( status_ != "200" && status_ != "204" )
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
                         }
 
-                        return default(Food);
+                        return default( Category );
                     }
                     finally
                     {
-                        if (response_ != null)
+                        if( response_ != null )
                             response_.Dispose();
                     }
                 }
@@ -190,373 +191,1032 @@ namespace DontRot.ClientAPI
             }
         }
 
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Food> GetAsync(int id)
+        private string ConvertToString( object value, System.Globalization.CultureInfo cultureInfo )
         {
-            return GetAsync(id, System.Threading.CancellationToken.None);
-        }
-
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<Food> GetAsync(int id, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Food/{id}");
-            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            try
+            if( value is System.Enum )
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                string name = System.Enum.GetName( value.GetType(), value );
+                if( name != null )
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
+                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo( value.GetType() ).GetDeclaredField( name );
+                    if( field != null )
                     {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(Food);
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Food>(responseData_, _settings.Value);
-                                return result_;
-                            }
-                            catch (System.Exception exception_)
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
-                            }
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
-                        }
-
-                        return default(Food);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-            }
-        }
-
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileResponse> PutAsync(int id, Food food)
-        {
-            return PutAsync(id, food, System.Threading.CancellationToken.None);
-        }
-
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<FileResponse> PutAsync(int id, Food food, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Food/{id}");
-            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(food, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/octet-stream"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200" || status_ == "206")
-                        {
-                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
-                            var fileResponse_ = new FileResponse((int)response_.StatusCode, headers_, responseStream_, null, response_);
-                            client_ = null; response_ = null; // response and client are disposed by FileResponse
-                            return fileResponse_;
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
-                        }
-
-                        return default(FileResponse);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-            }
-        }
-
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileResponse> DeleteAsync(int id)
-        {
-            return DeleteAsync(id, System.Threading.CancellationToken.None);
-        }
-
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<FileResponse> DeleteAsync(int id, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Food/{id}");
-            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/octet-stream"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200" || status_ == "206")
-                        {
-                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
-                            var fileResponse_ = new FileResponse((int)response_.StatusCode, headers_, responseStream_, null, response_);
-                            client_ = null; response_ = null; // response and client are disposed by FileResponse
-                            return fileResponse_;
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
-                        }
-
-                        return default(FileResponse);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-            }
-        }
-
-        private string ConvertToString(object value, System.Globalization.CultureInfo cultureInfo)
-        {
-            if (value is System.Enum)
-            {
-                string name = System.Enum.GetName(value.GetType(), value);
-                if (name != null)
-                {
-                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
-                    if (field != null)
-                    {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute( field, typeof( System.Runtime.Serialization.EnumMemberAttribute ) )
                             as System.Runtime.Serialization.EnumMemberAttribute;
-                        if (attribute != null)
+                        if( attribute != null )
                         {
                             return attribute.Value != null ? attribute.Value : name;
                         }
                     }
                 }
             }
-            else if (value is bool)
+            else if( value is bool )
             {
-                return System.Convert.ToString(value, cultureInfo).ToLowerInvariant();
+                return System.Convert.ToString( value, cultureInfo ).ToLowerInvariant();
             }
-            else if (value is byte[])
+            else if( value is byte[] )
             {
-                return System.Convert.ToBase64String((byte[])value);
+                return System.Convert.ToBase64String( (byte[])value );
             }
-            else if (value != null && value.GetType().IsArray)
+            else if( value != null && value.GetType().IsArray )
             {
-                var array = System.Linq.Enumerable.OfType<object>((System.Array)value);
-                return string.Join(",", System.Linq.Enumerable.Select(array, o => ConvertToString(o, cultureInfo)));
+                var array = System.Linq.Enumerable.OfType<object>( (System.Array)value );
+                return string.Join( ",", System.Linq.Enumerable.Select( array, o => ConvertToString( o, cultureInfo ) ) );
             }
 
-            return System.Convert.ToString(value, cultureInfo);
+            return System.Convert.ToString( value, cultureInfo );
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
+    public partial class FoodClient
+    {
+        private string _baseUrl = "http://localhost:5000";
+        private System.Net.Http.HttpClient _httpClient;
+        private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
+
+        public FoodClient( System.Net.Http.HttpClient httpClient )
+        {
+            _httpClient = httpClient;
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>( () =>
+            {
+                var settings = new Newtonsoft.Json.JsonSerializerSettings();
+                UpdateJsonSerializerSettings( settings );
+                return settings;
+            } );
+        }
+
+        public string BaseUrl
+        {
+            get { return _baseUrl; }
+            set { _baseUrl = value; }
+        }
+
+        protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
+
+        partial void UpdateJsonSerializerSettings( Newtonsoft.Json.JsonSerializerSettings settings );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder );
+        partial void ProcessResponse( System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response );
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Food>> GetAllFoodAsync()
+        {
+            return GetAllFoodAsync( System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Food>> GetAllFoodAsync( System.Threading.CancellationToken cancellationToken )
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Food" );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( System.Collections.Generic.ICollection<Food> );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<Food>>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( System.Collections.Generic.ICollection<Food> );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Food> PostFoodAsync( Food food )
+        {
+            return PostFoodAsync( food, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Food> PostFoodAsync( Food food, System.Threading.CancellationToken cancellationToken )
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Food" );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    var content_ = new System.Net.Http.StringContent( Newtonsoft.Json.JsonConvert.SerializeObject( food, _settings.Value ) );
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse( "application/json" );
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod( "POST" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( Food );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Food>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( Food );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Food> GetFoodAsync( int id )
+        {
+            return GetFoodAsync( id, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Food> GetFoodAsync( int id, System.Threading.CancellationToken cancellationToken )
+        {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Food/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( Food );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Food>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( Food );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<FileResponse> PutFoodAsync( int id, Food food )
+        {
+            return PutFoodAsync( id, food, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<FileResponse> PutFoodAsync( int id, Food food, System.Threading.CancellationToken cancellationToken )
+        {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Food/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    var content_ = new System.Net.Http.StringContent( Newtonsoft.Json.JsonConvert.SerializeObject( food, _settings.Value ) );
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse( "application/json" );
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod( "PUT" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/octet-stream" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" || status_ == "206" )
+                        {
+                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait( false );
+                            var fileResponse_ = new FileResponse( (int)response_.StatusCode, headers_, responseStream_, null, response_ );
+                            client_ = null; response_ = null; // response and client are disposed by FileResponse
+                            return fileResponse_;
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( FileResponse );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<FileResponse> DeleteFoodAsync( int id )
+        {
+            return DeleteFoodAsync( id, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<FileResponse> DeleteFoodAsync( int id, System.Threading.CancellationToken cancellationToken )
+        {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Food/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "DELETE" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/octet-stream" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" || status_ == "206" )
+                        {
+                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait( false );
+                            var fileResponse_ = new FileResponse( (int)response_.StatusCode, headers_, responseStream_, null, response_ );
+                            client_ = null; response_ = null; // response and client are disposed by FileResponse
+                            return fileResponse_;
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( FileResponse );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        private string ConvertToString( object value, System.Globalization.CultureInfo cultureInfo )
+        {
+            if( value is System.Enum )
+            {
+                string name = System.Enum.GetName( value.GetType(), value );
+                if( name != null )
+                {
+                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo( value.GetType() ).GetDeclaredField( name );
+                    if( field != null )
+                    {
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute( field, typeof( System.Runtime.Serialization.EnumMemberAttribute ) )
+                            as System.Runtime.Serialization.EnumMemberAttribute;
+                        if( attribute != null )
+                        {
+                            return attribute.Value != null ? attribute.Value : name;
+                        }
+                    }
+                }
+            }
+            else if( value is bool )
+            {
+                return System.Convert.ToString( value, cultureInfo ).ToLowerInvariant();
+            }
+            else if( value is byte[] )
+            {
+                return System.Convert.ToBase64String( (byte[])value );
+            }
+            else if( value != null && value.GetType().IsArray )
+            {
+                var array = System.Linq.Enumerable.OfType<object>( (System.Array)value );
+                return string.Join( ",", System.Linq.Enumerable.Select( array, o => ConvertToString( o, cultureInfo ) ) );
+            }
+
+            return System.Convert.ToString( value, cultureInfo );
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
+    public partial class SlotClient
+    {
+        private string _baseUrl = "http://localhost:5000";
+        private System.Net.Http.HttpClient _httpClient;
+        private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
+
+        public SlotClient( System.Net.Http.HttpClient httpClient )
+        {
+            _httpClient = httpClient;
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>( () =>
+            {
+                var settings = new Newtonsoft.Json.JsonSerializerSettings();
+                UpdateJsonSerializerSettings( settings );
+                return settings;
+            } );
+        }
+
+        public string BaseUrl
+        {
+            get { return _baseUrl; }
+            set { _baseUrl = value; }
+        }
+
+        protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
+
+        partial void UpdateJsonSerializerSettings( Newtonsoft.Json.JsonSerializerSettings settings );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder );
+        partial void ProcessResponse( System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response );
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Slot>> GetAllSlotAsync()
+        {
+            return GetAllSlotAsync( System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Slot>> GetAllSlotAsync( System.Threading.CancellationToken cancellationToken )
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Slot" );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( System.Collections.Generic.ICollection<Slot> );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<Slot>>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( System.Collections.Generic.ICollection<Slot> );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Slot> GetSlotAsync( int id )
+        {
+            return GetSlotAsync( id, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Slot> GetSlotAsync( int id, System.Threading.CancellationToken cancellationToken )
+        {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Slot/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( Slot );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Slot>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( Slot );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        private string ConvertToString( object value, System.Globalization.CultureInfo cultureInfo )
+        {
+            if( value is System.Enum )
+            {
+                string name = System.Enum.GetName( value.GetType(), value );
+                if( name != null )
+                {
+                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo( value.GetType() ).GetDeclaredField( name );
+                    if( field != null )
+                    {
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute( field, typeof( System.Runtime.Serialization.EnumMemberAttribute ) )
+                            as System.Runtime.Serialization.EnumMemberAttribute;
+                        if( attribute != null )
+                        {
+                            return attribute.Value != null ? attribute.Value : name;
+                        }
+                    }
+                }
+            }
+            else if( value is bool )
+            {
+                return System.Convert.ToString( value, cultureInfo ).ToLowerInvariant();
+            }
+            else if( value is byte[] )
+            {
+                return System.Convert.ToBase64String( (byte[])value );
+            }
+            else if( value != null && value.GetType().IsArray )
+            {
+                var array = System.Linq.Enumerable.OfType<object>( (System.Array)value );
+                return string.Join( ",", System.Linq.Enumerable.Select( array, o => ConvertToString( o, cultureInfo ) ) );
+            }
+
+            return System.Convert.ToString( value, cultureInfo );
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
+    public partial class StorageClient
+    {
+        private string _baseUrl = "http://localhost:5000";
+        private System.Net.Http.HttpClient _httpClient;
+        private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
+
+        public StorageClient( System.Net.Http.HttpClient httpClient )
+        {
+            _httpClient = httpClient;
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>( () =>
+            {
+                var settings = new Newtonsoft.Json.JsonSerializerSettings();
+                UpdateJsonSerializerSettings( settings );
+                return settings;
+            } );
+        }
+
+        public string BaseUrl
+        {
+            get { return _baseUrl; }
+            set { _baseUrl = value; }
+        }
+
+        protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
+
+        partial void UpdateJsonSerializerSettings( Newtonsoft.Json.JsonSerializerSettings settings );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url );
+        partial void PrepareRequest( System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder );
+        partial void ProcessResponse( System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response );
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Storage>> GetAllStorageAsync()
+        {
+            return GetAllStorageAsync( System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Storage>> GetAllStorageAsync( System.Threading.CancellationToken cancellationToken )
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Storage" );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( System.Collections.Generic.ICollection<Storage> );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<Storage>>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( System.Collections.Generic.ICollection<Storage> );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Storage> GetStorageAsync( int id )
+        {
+            return GetStorageAsync( id, System.Threading.CancellationToken.None );
+        }
+
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Storage> GetStorageAsync( int id, System.Threading.CancellationToken cancellationToken )
+        {
+            if( id == null )
+                throw new System.ArgumentNullException( "id" );
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append( BaseUrl != null ? BaseUrl.TrimEnd( '/' ) : "" ).Append( "/api/Storage/{id}" );
+            urlBuilder_.Replace( "{id}", System.Uri.EscapeDataString( ConvertToString( id, System.Globalization.CultureInfo.InvariantCulture ) ) );
+
+            var client_ = _httpClient;
+            try
+            {
+                using( var request_ = new System.Net.Http.HttpRequestMessage() )
+                {
+                    request_.Method = new System.Net.Http.HttpMethod( "GET" );
+                    request_.Headers.Accept.Add( System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse( "application/json" ) );
+
+                    PrepareRequest( client_, request_, urlBuilder_ );
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri( url_, System.UriKind.RelativeOrAbsolute );
+                    PrepareRequest( client_, request_, url_ );
+
+                    var response_ = await client_.SendAsync( request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken ).ConfigureAwait( false );
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary( response_.Headers, h_ => h_.Key, h_ => h_.Value );
+                        if( response_.Content != null && response_.Content.Headers != null )
+                        {
+                            foreach( var item_ in response_.Content.Headers )
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse( client_, response_ );
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if( status_ == "200" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            var result_ = default( Storage );
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Storage>( responseData_, _settings.Value );
+                                return result_;
+                            }
+                            catch( System.Exception exception_ )
+                            {
+                                throw new SwaggerException( "Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_ );
+                            }
+                        }
+                        else
+                        if( status_ != "200" && status_ != "204" )
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait( false );
+                            throw new SwaggerException( "The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null );
+                        }
+
+                        return default( Storage );
+                    }
+                    finally
+                    {
+                        if( response_ != null )
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        private string ConvertToString( object value, System.Globalization.CultureInfo cultureInfo )
+        {
+            if( value is System.Enum )
+            {
+                string name = System.Enum.GetName( value.GetType(), value );
+                if( name != null )
+                {
+                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo( value.GetType() ).GetDeclaredField( name );
+                    if( field != null )
+                    {
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute( field, typeof( System.Runtime.Serialization.EnumMemberAttribute ) )
+                            as System.Runtime.Serialization.EnumMemberAttribute;
+                        if( attribute != null )
+                        {
+                            return attribute.Value != null ? attribute.Value : name;
+                        }
+                    }
+                }
+            }
+            else if( value is bool )
+            {
+                return System.Convert.ToString( value, cultureInfo ).ToLowerInvariant();
+            }
+            else if( value is byte[] )
+            {
+                return System.Convert.ToBase64String( (byte[])value );
+            }
+            else if( value != null && value.GetType().IsArray )
+            {
+                var array = System.Linq.Enumerable.OfType<object>( (System.Array)value );
+                return string.Join( ",", System.Linq.Enumerable.Select( array, o => ConvertToString( o, cultureInfo ) ) );
+            }
+
+            return System.Convert.ToString( value, cultureInfo );
         }
     }
 
 
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Food
+    [System.CodeDom.Compiler.GeneratedCode( "NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)" )]
+    public partial class Category
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "id", Required = Newtonsoft.Json.Required.Always )]
         public int Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public string Name { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("expiryDateTime", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string ToJson()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject( this );
+        }
+
+        public static Category FromJson( string data )
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Category>( data );
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode( "NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)" )]
+    public partial class Food
+    {
+        [Newtonsoft.Json.JsonProperty( "id", Required = Newtonsoft.Json.Required.Always )]
+        public int Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty( "name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
+        public string Name { get; set; }
+
+        [Newtonsoft.Json.JsonProperty( "expiryDateTime", Required = Newtonsoft.Json.Required.Always )]
+        [System.ComponentModel.DataAnnotations.Required( AllowEmptyStrings = true )]
         public System.DateTimeOffset ExpiryDateTime { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("quantity", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "quantity", Required = Newtonsoft.Json.Required.Always )]
         public int Quantity { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("categoryId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "categoryId", Required = Newtonsoft.Json.Required.Always )]
         public int CategoryId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("category", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "category", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public Category Category { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("slotId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "slotId", Required = Newtonsoft.Json.Required.Always )]
         public int SlotId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("slot", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "slot", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public Slot Slot { get; set; }
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return Newtonsoft.Json.JsonConvert.SerializeObject( this );
         }
 
-        public static Food FromJson(string data)
+        public static Food FromJson( string data )
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Food>(data);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Food>( data );
         }
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Category
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        public int Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Name { get; set; }
-
-        public string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public static Category FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Category>(data);
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCode( "NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)" )]
     public partial class Slot
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "id", Required = Newtonsoft.Json.Required.Always )]
         public int Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public string Name { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("storageId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "storageId", Required = Newtonsoft.Json.Required.Always )]
         public int StorageId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("storage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "storage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public Storage Storage { get; set; }
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return Newtonsoft.Json.JsonConvert.SerializeObject( this );
         }
 
-        public static Slot FromJson(string data)
+        public static Slot FromJson( string data )
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Slot>(data);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Slot>( data );
         }
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCode( "NJsonSchema", "9.13.37.0 (Newtonsoft.Json v11.0.0.0)" )]
     public partial class Storage
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty( "id", Required = Newtonsoft.Json.Required.Always )]
         public int Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty( "name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore )]
         public string Name { get; set; }
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return Newtonsoft.Json.JsonConvert.SerializeObject( this );
         }
 
-        public static Storage FromJson(string data)
+        public static Storage FromJson( string data )
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Storage>(data);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Storage>( data );
         }
 
     }
@@ -577,7 +1237,7 @@ namespace DontRot.ClientAPI
             get { return StatusCode == 206; }
         }
 
-        public FileResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.IO.Stream stream, System.IDisposable client, System.IDisposable response)
+        public FileResponse( int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.IO.Stream stream, System.IDisposable client, System.IDisposable response )
         {
             StatusCode = statusCode;
             Headers = headers;
@@ -588,16 +1248,16 @@ namespace DontRot.ClientAPI
 
         public void Dispose()
         {
-            if (Stream != null)
+            if( Stream != null )
                 Stream.Dispose();
-            if (_response != null)
+            if( _response != null )
                 _response.Dispose();
-            if (_client != null)
+            if( _client != null )
                 _client.Dispose();
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))")]
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
     public partial class SwaggerException : System.Exception
     {
         public int StatusCode { get; private set; }
@@ -606,8 +1266,8 @@ namespace DontRot.ClientAPI
 
         public System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
-            : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response.Substring(0, response.Length >= 512 ? 512 : response.Length), innerException)
+        public SwaggerException( string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException )
+            : base( message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response.Substring( 0, response.Length >= 512 ? 512 : response.Length ), innerException )
         {
             StatusCode = statusCode;
             Response = response;
@@ -616,17 +1276,17 @@ namespace DontRot.ClientAPI
 
         public override string ToString()
         {
-            return string.Format("HTTP Response: \n\n{0}\n\n{1}", Response, base.ToString());
+            return string.Format( "HTTP Response: \n\n{0}\n\n{1}", Response, base.ToString() );
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))")]
+    [System.CodeDom.Compiler.GeneratedCode( "NSwag", "12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))" )]
     public partial class SwaggerException<TResult> : SwaggerException
     {
         public TResult Result { get; private set; }
 
-        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
-            : base(message, statusCode, response, headers, innerException)
+        public SwaggerException( string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException )
+            : base( message, statusCode, response, headers, innerException )
         {
             Result = result;
         }

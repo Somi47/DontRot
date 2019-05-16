@@ -24,25 +24,25 @@ namespace DontRot.Api.Controllers
         }
 
 		[HttpGet]
-        public ActionResult<IEnumerable<Food>> Get()
+        public ActionResult<IEnumerable<Food>> GetAllFood()
         {
             return Mapper.Map<List<Food>>( FoodService.GetFoods() );
         }
 
         // GET: api/Food/5
-        [HttpGet("{id}", Name = "Get")]
-        public ActionResult<Food> Get(int id)
+        [HttpGet("{id}")]
+        public ActionResult<Food> GetFood(int id)
         {
             return Mapper.Map<Food>(FoodService.GetFood(id));
         }
 
         // POST: api/Food
         [HttpPost]
-        public ActionResult<Food> Post([FromBody] Food food)
+        public ActionResult<Food> PostFood([FromBody] Food food)
         {
             var created = FoodService.InsertFood(Mapper.Map<DAL.Entities.Food>(food));
             return CreatedAtAction(
-                        nameof(Get),
+                        nameof(GetFood),
                         new { id = created.Id },
                         Mapper.Map<Food>(created)
             );
@@ -50,7 +50,7 @@ namespace DontRot.Api.Controllers
 
         // PUT: api/Food/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Food food)
+        public IActionResult PutFood(int id, [FromBody] Food food)
         {
             FoodService.UpdateFood(id, Mapper.Map<DAL.Entities.Food>(food));
             return NoContent();
@@ -58,7 +58,7 @@ namespace DontRot.Api.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteFood(int id)
         {
             FoodService.DeleteFood(id);
             return NoContent();
