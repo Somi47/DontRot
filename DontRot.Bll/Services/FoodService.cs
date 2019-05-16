@@ -38,7 +38,13 @@ namespace DontRot.Bll.Services
 
         public Food InsertFood(Food newFood)
         {
+            Category category = _context.Categories.FirstOrDefault( c => c.Id == newFood.CategoryId );
+            Slot slot = _context.Slots.FirstOrDefault( s => s.Id == newFood.SlotId );
+            newFood.Category = category;
+            newFood.Slot = slot;
             _context.Foods.Add(newFood);
+            // category.Foods.Add( newFood );
+            // slot.Foods.Add( newFood );
 
             _context.SaveChanges();
 
@@ -47,6 +53,12 @@ namespace DontRot.Bll.Services
 
         public void UpdateFood(int FoodId, Food updatedFood)
         {
+            if( updatedFood.Quantity <= 0 )
+            {
+                DeleteFood( FoodId );
+                return;
+            }
+
             updatedFood.Id = FoodId;
             var entry = _context.Attach(updatedFood);
             entry.State = EntityState.Modified;

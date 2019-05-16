@@ -5,42 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DontRot.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="450" Width="900">
     <Grid>
-		<StackPanel Orientation="Vertical">
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Label Content="Category:" Width="70" />
-				<ComboBox x:Name="cbCategory" ItemsSource="{Binding Path=CategoryList}"
-					DisplayMemberPath="Name"
-					SelectedValuePath="Name"
-					SelectedValue="{Binding Path=Name}" />
-			</StackPanel>
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Label Content="Storage:" Width="70" />
-				<ComboBox x:Name="cbStorage" ItemsSource="{Binding Path=StorageList}" SelectionChanged="Storage_SelectionChanged"
-					DisplayMemberPath="Name"
-					SelectedValuePath="Name"
-					SelectedValue="{Binding Path=Name}" />
-			</StackPanel>
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Label Content="Slot:" Width="70" />
-				<ComboBox x:Name="cbSlot" ItemsSource="{Binding Path=FilteredSlotList}" 
-					DisplayMemberPath="Name"
-					SelectedValuePath="Name"
-					SelectedValue="{Binding Path=Name}" />
-			</StackPanel>
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Label Content="Quantity:" Width="70" />
-				<TextBox x:Name="tbQuantity" Width="100" Text="{Binding Path=Quantity, Mode=TwoWay}"/>
-			</StackPanel>
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Label Content="Expiry:" Width="70" />
-				<DatePicker x:Name="dpExpiry" Width="100" SelectedDate="{Binding Path=Expiry, Mode=TwoWay}"/>
-			</StackPanel>
-			<StackPanel Margin="10" Orientation="Horizontal">
-				<Button Margin="10" Height="20" Width="50" Content="Refresh" Click="Button_Click_Refresh"/>
-				<Button Margin="10" Height="20" Width="50" Content="Eat one" Click="Button_Click_EatOne"/>
-				<Button Margin="10" Height="20" Width="50" Content="Eat all" Click="Button_Click_EatAll"/>
+		<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Vertical">
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Category:" Width="70" />
+					<ComboBox x:Name="cbCategory" ItemsSource="{Binding Path=CategoryList}"
+						DisplayMemberPath="Name"
+						SelectedValuePath="Name"
+						SelectedValue="{Binding Path=Name, Mode=OneWayToSource}"
+						SelectedItem="{Binding Path=SelectedCategory}"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Name:" Width="70" />
+					<TextBox x:Name="tbName" Width="100" Text="{Binding Path=Name, Mode=TwoWay}"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Storage:" Width="70" />
+					<ComboBox x:Name="cbStorage" ItemsSource="{Binding Path=StorageList}" SelectionChanged="Storage_SelectionChanged"
+						DisplayMemberPath="Name"
+						SelectedValuePath="Name" />
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Slot:" Width="70" />
+					<ComboBox x:Name="cbSlot" ItemsSource="{Binding Path=FilteredSlotList}" 
+						DisplayMemberPath="Name"
+						SelectedValuePath="Name"
+						SelectedItem="{Binding Path=SelectedSlot}"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Quantity:" Width="70" />
+					<TextBox x:Name="tbQuantity" Width="100" Text="{Binding Path=Quantity, Mode=TwoWay}"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Label Content="Expiry:" Width="70" />
+					<DatePicker x:Name="dpExpiry" Width="100" SelectedDate="{Binding Path=Expiry, Mode=TwoWay}"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Button Margin="10" Height="20" Width="60" Content="Refresh" Click="Button_Click_Refresh"/>
+					<Button Margin="10" Height="20" Width="60" Content="Add food" Click="Button_Click_AddFood"/>
+				</StackPanel>
+				<StackPanel Margin="10" Orientation="Horizontal">
+					<Button Margin="10" Height="20" Width="60" Content="Eat one" Click="Button_Click_EatOne"/>
+					<Button Margin="10" Height="20" Width="60" Content="Eat all" Click="Button_Click_EatAll"/>
+				</StackPanel>
 			</StackPanel>
 			<Grid>
 				<ListView Margin="10" x:Name="lvFood" ItemsSource="{Binding FoodList}">

@@ -37,6 +37,10 @@ namespace DontRot.Client
         {
             FoodGrid.RefreshAsync();
         }
+        private void Button_Click_AddFood( object sender, RoutedEventArgs e )
+        {
+            FoodGrid.AddFood();
+        }
         private void Button_Click_EatOne(object sender, RoutedEventArgs e)
         {
             ListView listView = (ListView)FindName("lvFood");
@@ -64,6 +68,9 @@ namespace DontRot.Client
     {
         public DateTime Expiry { get; set; } = DateTime.Now;
         public string Quantity { get; set; } = "1";
+        public string Name { get; set; } = "MyFood";
+        public Category SelectedCategory { get; set; }
+        public Slot SelectedSlot { get; set; }
         public ObservableCollection<Food> FoodList { get; set; } = new ObservableCollection<Food>();
         public ObservableCollection<Category> CategoryList { get; set; } = new ObservableCollection<Category>();
         public ObservableCollection<Storage> StorageList { get; set; } = new ObservableCollection<Storage>();
@@ -130,6 +137,29 @@ namespace DontRot.Client
                 if( item.Storage.Id == storage.Id )
                     FilteredSlotList.Add( item );
             }
+        }
+
+        public async void AddFood()
+        {
+            if( SelectedCategory == null || SelectedSlot == null )
+                return;
+
+            Food food = new Food {
+                Id = 0,
+                Name = Name,
+                Quantity = int.Parse(Quantity),
+                ExpiryDateTime = Expiry,
+                //Category = SelectedCategory,
+                CategoryId = SelectedCategory.Id,
+                //Slot = SelectedSlot,
+                SlotId = SelectedSlot.Id
+            };
+            using( var httpClient = new HttpClient() )
+            {
+                FoodClient foodClient = new FoodClient( httpClient );
+                await foodClient.PostFoodAsync( food );
+            }
+            RefreshAsync();
         }
 
         public async void EatOne(Food food)

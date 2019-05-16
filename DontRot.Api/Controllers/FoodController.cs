@@ -38,6 +38,7 @@ namespace DontRot.Api.Controllers
 
         // POST: api/Food
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult<Food> PostFood([FromBody] Food food)
         {
             var created = FoodService.InsertFood(Mapper.Map<DAL.Entities.Food>(food));
