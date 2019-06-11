@@ -1,0 +1,1 @@
+SC CREATE "DontRotApi" binpath= "F:/Suli/DontRot/DontRot.Api/bin/Debug/netcoreapp2.2/publish/DontRot.Api.exe"
