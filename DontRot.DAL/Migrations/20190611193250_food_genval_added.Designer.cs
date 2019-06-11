@@ -3,15 +3,17 @@ using System;
 using DontRot.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DontRot.DAL.Migrations
 {
     [DbContext(typeof(DontRotContext))]
-    partial class DontRotContextModelSnapshot : ModelSnapshot
+    [Migration("20190611193250_food_genval_added")]
+    partial class food_genval_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

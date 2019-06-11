@@ -101,6 +101,10 @@ namespace DontRot.DAL
                 .HasMany(o => o.Slots)
                 .WithOne(po => po.Storage)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Food>()
+                .Property(f => f.Id)
+                .ValueGeneratedOnAdd();
         }
 
     }

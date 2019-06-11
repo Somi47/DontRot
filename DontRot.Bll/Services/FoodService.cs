@@ -38,6 +38,7 @@ namespace DontRot.Bll.Services
 
         public Food InsertFood(Food newFood)
         {
+            newFood.Id = _context.Foods.Max( f => f.Id ) + 1;
             Category category = _context.Categories.FirstOrDefault( c => c.Id == newFood.CategoryId );
             Slot slot = _context.Slots.FirstOrDefault( s => s.Id == newFood.SlotId );
             newFood.Category = category;
@@ -55,7 +56,7 @@ namespace DontRot.Bll.Services
         {
             if( updatedFood.Quantity <= 0 )
             {
-                DeleteFood( FoodId );
+                DeleteFood( FoodId, updatedFood.RowVersion );
                 return;
             }
 
@@ -65,9 +66,9 @@ namespace DontRot.Bll.Services
             _context.SaveChanges();           
         }
 
-        public void DeleteFood(int FoodId)
+        public void DeleteFood(int FoodId, long RowVersion)
         {
-            _context.Foods.Remove(new Food { Id = FoodId });
+            _context.Foods.Remove(new Food { Id = FoodId, RowVersion = RowVersion });
             _context.SaveChanges();            
         }
     }

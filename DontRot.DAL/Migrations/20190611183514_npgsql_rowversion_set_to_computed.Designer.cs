@@ -3,15 +3,17 @@ using System;
 using DontRot.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DontRot.DAL.Migrations
 {
     [DbContext(typeof(DontRotContext))]
-    partial class DontRotContextModelSnapshot : ModelSnapshot
+    [Migration("20190611183514_npgsql_rowversion_set_to_computed")]
+    partial class npgsql_rowversion_set_to_computed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +89,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            ExpiryDateTime = new DateTime(2019, 6, 16, 21, 32, 49, 821, DateTimeKind.Local).AddTicks(735),
+                            ExpiryDateTime = new DateTime(2019, 6, 16, 20, 35, 13, 893, DateTimeKind.Local).AddTicks(1022),
                             Name = "Mizo dobozos tej",
                             Quantity = 1,
                             RowVersion = 0u,
@@ -97,7 +99,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            ExpiryDateTime = new DateTime(2019, 6, 14, 21, 32, 49, 823, DateTimeKind.Local).AddTicks(9482),
+                            ExpiryDateTime = new DateTime(2019, 6, 14, 20, 35, 13, 896, DateTimeKind.Local).AddTicks(199),
                             Name = "Alföldi zacskós tej",
                             Quantity = 1,
                             RowVersion = 0u,
@@ -107,7 +109,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            ExpiryDateTime = new DateTime(2019, 6, 22, 21, 32, 49, 823, DateTimeKind.Local).AddTicks(9541),
+                            ExpiryDateTime = new DateTime(2019, 6, 22, 20, 35, 13, 896, DateTimeKind.Local).AddTicks(253),
                             Name = "Pick szeletelt téliszalámi",
                             Quantity = 5,
                             RowVersion = 0u,
@@ -117,7 +119,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            ExpiryDateTime = new DateTime(2019, 8, 22, 21, 32, 49, 823, DateTimeKind.Local).AddTicks(9575),
+                            ExpiryDateTime = new DateTime(2019, 8, 22, 20, 35, 13, 896, DateTimeKind.Local).AddTicks(292),
                             Name = "CBA páros kolbász",
                             Quantity = 1,
                             RowVersion = 0u,
@@ -127,7 +129,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 5,
                             CategoryId = 4,
-                            ExpiryDateTime = new DateTime(2019, 6, 15, 21, 32, 49, 823, DateTimeKind.Local).AddTicks(9614),
+                            ExpiryDateTime = new DateTime(2019, 6, 15, 20, 35, 13, 896, DateTimeKind.Local).AddTicks(327),
                             Name = "Spanyol banán",
                             Quantity = 3,
                             RowVersion = 0u,
@@ -137,7 +139,7 @@ namespace DontRot.DAL.Migrations
                         {
                             Id = 6,
                             CategoryId = 3,
-                            ExpiryDateTime = new DateTime(2021, 4, 7, 21, 32, 49, 823, DateTimeKind.Local).AddTicks(9653),
+                            ExpiryDateTime = new DateTime(2021, 4, 7, 20, 35, 13, 896, DateTimeKind.Local).AddTicks(395),
                             Name = "Bab konzerv",
                             Quantity = 2,
                             RowVersion = 0u,

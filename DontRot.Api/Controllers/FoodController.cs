@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using DontRot.Bll.Services;
 using AutoMapper;
 using DontRot.Bll.Dtos;
+using Microsoft.EntityFrameworkCore;
 
 namespace DontRot.Api.Controllers
 {
@@ -51,17 +52,27 @@ namespace DontRot.Api.Controllers
 
         // PUT: api/Food/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public IActionResult PutFood(int id, [FromBody] Food food)
         {
-            FoodService.UpdateFood(id, Mapper.Map<DAL.Entities.Food>(food));
+            try
+            {
+                FoodService.UpdateFood(id, Mapper.Map<DAL.Entities.Food>(food));
+            }
+            catch (DbUpdateException e)
+            {
+                return Conflict();
+            }
+
             return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteFood(int id)
+        public IActionResult DeleteFood(int id, long RowVersion)
         {
-            FoodService.DeleteFood(id);
+            FoodService.DeleteFood(id, RowVersion);
             return NoContent();
         }
     }

@@ -9,6 +9,6 @@ namespace DontRot.Bll.Services
         IEnumerable<Food> GetFoods();
         Food InsertFood(Food newFood);
         void UpdateFood(int FoodId, Food updatedFood);
-        void DeleteFood(int FoodId);
+        void DeleteFood(int FoodId, long RowVersion);
     }
 }

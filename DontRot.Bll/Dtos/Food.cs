@@ -15,5 +15,7 @@ namespace DontRot.Bll.Dtos
         public Category Category { get; set; }
         public int SlotId { get; set; }
         public Slot Slot { get; set; }
+
+        public long RowVersion { get; set; }
     }
 }

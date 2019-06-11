@@ -32,11 +32,11 @@ namespace DontRot.Api
                             = ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<DontRotContext>(o =>
-                o.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"])
+                o.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"])
                 .ConfigureWarnings(c => c.Throw(RelationalEventId.QueryClientEvaluationWarning)));
 
-			services.AddTransient<ICategoryService, CategoryService>();
-			services.AddTransient<IFoodService, FoodService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IFoodService, FoodService>();
             services.AddTransient<ISlotService, SlotService>();
             services.AddTransient<IStorageService, StorageService>();
 

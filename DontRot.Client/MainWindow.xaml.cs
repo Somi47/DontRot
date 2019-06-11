@@ -165,10 +165,39 @@ namespace DontRot.Client
         public async void EatOne(Food food)
         {
             --food.Quantity;
-            using (var httpClient = new HttpClient())
+            bool success = false;
+            while (!success)
             {
-                FoodClient foodClient = new FoodClient(httpClient);
-                await foodClient.PutFoodAsync(food.Id, food);
+                try
+                {
+                    using (var httpClient = new HttpClient())
+                    {
+                        FoodClient foodClient = new FoodClient(httpClient);
+                        await foodClient.PutFoodAsync(food.Id, food);
+                        success = true;
+                    }
+                }
+                catch
+                {
+                    MessageBoxResult rsltMessageBox = MessageBox.Show("Do you want to force your value?", "Update error!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    switch (rsltMessageBox)
+                    {
+                        case MessageBoxResult.Yes:
+                            {
+                                using (var httpClient = new HttpClient())
+                                {
+                                    FoodClient foodClient = new FoodClient(httpClient);
+                                    food.RowVersion = (await foodClient.GetFoodAsync(food.Id)).RowVersion;
+                                }
+                            }
+                            break;
+
+                        case MessageBoxResult.No:
+                            success = true;
+                            break;
+                    }
+                }
             }
             RefreshAsync();
         }
@@ -178,7 +207,7 @@ namespace DontRot.Client
             using( var httpClient = new HttpClient() )
             {
                 FoodClient foodClient = new FoodClient( httpClient );
-                await foodClient.DeleteFoodAsync( food.Id );
+                await foodClient.DeleteFoodAsync( food.Id, food.RowVersion );
             }
             RefreshAsync();
         }
